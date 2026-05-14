@@ -21,7 +21,7 @@ services:
       mountPath: /opt/render/project/src/backend/data
       sizeGB: 1
 
-  - type: web
+  - type: static
     name: campus-mate-frontend
     env: static
     buildCommand: npm install && npm run build
