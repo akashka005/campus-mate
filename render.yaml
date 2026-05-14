@@ -23,10 +23,9 @@ services:
 
   - type: static
     name: campus-mate-frontend
-    env: static
     buildCommand: npm install && npm run build
-    publishPath: frontend/dist
-    rootDir: .
+    publishPath: dist
+    rootDir: frontend
     envVars:
       - key: VITE_API_URL
         fromService:
