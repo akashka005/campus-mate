@@ -15,13 +15,8 @@ for root, dirs, files in os.walk(target_dir):
             
             if search_text in content:
                 print(f"Refactoring {path}...")
-                # Replace URL
                 new_content = content.replace(search_text, replace_text)
-                
-                # Add import if not present
                 if "API_BASE_URL" not in content:
-                    # Insert after other imports or at top
                     new_content = import_line + new_content
-                
                 with open(path, "w", encoding="utf-8") as f:
                     f.write(new_content)

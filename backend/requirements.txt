@@ -20,3 +20,4 @@ pandas
 numpy
 tf-keras
 langchain-huggingface
+psycopg2-binary

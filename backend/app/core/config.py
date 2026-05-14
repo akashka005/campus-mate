@@ -16,7 +16,13 @@ class Settings(BaseSettings):
     CHROMA_DB_DIR: str = "db/chroma_db"
     UPLOAD_DIR: str = "uploads"
     BACKEND_CORS_ORIGINS: List[str] = ["*"]
-    DATABASE_URL: str = "sqlite:///./campusmate.db"
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./campusmate.db")
+
+    def get_database_url(self) -> str:
+        url = self.DATABASE_URL
+        if url.startswith("postgres://"):
+            url = url.replace("postgres://", "postgresql://", 1)
+        return url
     
     class Config:
         case_sensitive = True
