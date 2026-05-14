@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { GraduationCap, Mail, Lock, ArrowRight, Github } from 'lucide-react';
 import { Button, Card, Badge } from '../components/ui/Primitives';
+import { API_BASE_URL } from '../api/config';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,7 @@ export default function Login() {
       formData.append('username', email);
       formData.append('password', password);
 
-      const response = await fetch('http://localhost:8000/api/v1/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
         method: 'POST',
         body: formData
       });

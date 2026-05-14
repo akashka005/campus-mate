@@ -30,6 +30,7 @@ import { Button, Card, Badge, Skeleton } from '../components/ui/Primitives';
 import { cn } from '@/src/lib/utils';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { API_BASE_URL } from '../api/config';
 
 interface Message {
    id: string;
@@ -90,7 +91,7 @@ export default function AIChat() {
       const fetchUser = async () => {
          try {
             const token = localStorage.getItem('token');
-            const res = await fetch('http://localhost:8000/api/v1/auth/me', {
+            const res = await fetch(`${API_BASE_URL}/api/v1/auth/me`, {
                headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();
@@ -171,7 +172,7 @@ export default function AIChat() {
          formData.append('collection_id', 'general');
 
          const token = localStorage.getItem('token');
-         const response = await fetch('http://localhost:8000/api/v1/ai/chat', {
+         const response = await fetch(`${API_BASE_URL}/api/v1/ai/chat`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` },
             body: formData

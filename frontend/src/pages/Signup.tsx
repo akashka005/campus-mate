@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { GraduationCap, Mail, Lock, User, ArrowRight, Github } from 'lucide-react';
 import { Button, Card, Badge } from '../components/ui/Primitives';
+import { API_BASE_URL } from '../api/config';
 
 export default function Signup() {
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ export default function Signup() {
     setError("");
 
     try {
-      const response = await fetch('http://localhost:8000/api/v1/auth/signup', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

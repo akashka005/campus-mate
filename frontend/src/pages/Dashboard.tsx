@@ -36,6 +36,7 @@ import {
 } from 'recharts';
 
 import OnboardingTour from '../components/onboarding/OnboardingTour';
+import { API_BASE_URL } from '../api/config';
 
 export default function Dashboard() {
    const [loading, setLoading] = useState(true);
@@ -55,11 +56,11 @@ export default function Dashboard() {
          const token = localStorage.getItem('token');
          const headers = { 'Authorization': `Bearer ${token}` };
 
-         const statsRes = await fetch('http://localhost:8000/api/v1/ai/stats', { headers });
+         const statsRes = await fetch(`${API_BASE_URL}/api/v1/ai/stats`, { headers });
          const statsData = await statsRes.json();
          setStats(statsData);
 
-         const docsRes = await fetch('http://localhost:8000/api/v1/ai/documents', { headers });
+         const docsRes = await fetch(`${API_BASE_URL}/api/v1/ai/documents`, { headers });
          const docsData = await docsRes.json();
          setRecentDocs(docsData.slice(0, 4));
       } catch (error) {
