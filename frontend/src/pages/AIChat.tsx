@@ -150,7 +150,7 @@ export default function AIChat() {
                uploadData.append('collection_id', currentSessionId);
 
                const token = localStorage.getItem('token');
-               await fetch('http://localhost:8000/api/v1/ai/documents/upload', {
+               await fetch('${API_BASE_URL}/api/v1/ai/documents/upload', {
                   method: 'POST',
                   headers: { 'Authorization': `Bearer ${token}` },
                   body: uploadData

@@ -1,5 +1,4 @@
 services:
-  # Backend Service
   - type: web
     name: campus-mate-backend
     env: python
@@ -8,7 +7,7 @@ services:
     rootDir: backend
     envVars:
       - key: GROQ_API_KEY
-        sync: false # Set in Render dashboard
+        sync: false 
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
@@ -22,7 +21,6 @@ services:
       mountPath: /opt/render/project/src/backend/data
       sizeGB: 1
 
-  # Frontend Service (Static Site)
   - type: web
     name: campus-mate-frontend
     env: static

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, Calendar as CalendarIcon, Clock, CheckCircle2, Plus, Sparkles } from 'lucide-react';
@@ -16,7 +17,7 @@ export default function StudyPlanner() {
          formData.append('goal', goal);
          formData.append('timeframe', '1 week');
 
-         const response = await fetch('http://localhost:8000/api/v1/ai/study/plan', {
+         const response = await fetch('${API_BASE_URL}/api/v1/ai/study/plan', {
             method: 'POST',
             body: formData
          });

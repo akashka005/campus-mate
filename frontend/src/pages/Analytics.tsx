@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -36,7 +37,7 @@ export default function Analytics() {
    const fetchStats = async () => {
       try {
          const token = localStorage.getItem('token');
-         const res = await fetch('http://localhost:8000/api/v1/ai/stats', {
+         const res = await fetch('${API_BASE_URL}/api/v1/ai/stats', {
             headers: { 'Authorization': `Bearer ${token}` }
          });
          const data = await res.json();

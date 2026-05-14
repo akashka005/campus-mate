@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -35,7 +36,7 @@ export default function Profile() {
          const token = localStorage.getItem('token');
          const headers = { 'Authorization': `Bearer ${token}` };
 
-         const userRes = await fetch('http://localhost:8000/api/v1/auth/me', { headers });
+         const userRes = await fetch('${API_BASE_URL}/api/v1/auth/me', { headers });
          if (userRes.ok) {
             const userData = await userRes.json();
             setUser(userData);
@@ -47,7 +48,7 @@ export default function Profile() {
             });
          }
 
-         const statsRes = await fetch('http://localhost:8000/api/v1/ai/stats', { headers });
+         const statsRes = await fetch('${API_BASE_URL}/api/v1/ai/stats', { headers });
          const statsData = await statsRes.json();
          setStats(statsData);
       } catch (error) {
@@ -69,7 +70,7 @@ export default function Profile() {
    const handleSaveProfile = async () => {
       try {
          const token = localStorage.getItem('token');
-         const response = await fetch('http://localhost:8000/api/v1/auth/me', {
+         const response = await fetch('${API_BASE_URL}/api/v1/auth/me', {
             method: 'PUT',
             headers: {
                'Authorization': `Bearer ${token}`,

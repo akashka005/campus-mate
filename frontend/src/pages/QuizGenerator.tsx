@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -38,7 +39,7 @@ export default function QuizGenerator() {
     const fetchDocs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:8000/api/v1/ai/documents', {
+        const response = await fetch('${API_BASE_URL}/api/v1/ai/documents', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();
@@ -64,7 +65,7 @@ export default function QuizGenerator() {
       formData.append('num_questions', '5');
 
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8000/api/v1/ai/quiz/generate', {
+      const response = await fetch('${API_BASE_URL}/api/v1/ai/quiz/generate', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
@@ -103,7 +104,7 @@ export default function QuizGenerator() {
       formData.append('total', questions.length.toString());
       formData.append('difficulty', difficulty);
 
-      await fetch('http://localhost:8000/api/v1/ai/quiz/submit', {
+      await fetch('${API_BASE_URL}/api/v1/ai/quiz/submit', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData

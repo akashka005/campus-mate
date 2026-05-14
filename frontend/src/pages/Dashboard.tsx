@@ -86,7 +86,7 @@ export default function Dashboard() {
          formData.append('file', file);
          formData.append('collection_id', 'general');
 
-         const response = await fetch('http://localhost:8000/api/v1/ai/documents/upload', {
+         const response = await fetch('${API_BASE_URL}/api/v1/ai/documents/upload', {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             body: formData

@@ -73,7 +73,7 @@ export default function Login() {
     setError("");
     setMessage(`Redirecting to ${provider} authentication...`);
     const endpoint = provider.toLowerCase();
-    window.location.href = `http://localhost:8000/api/v1/auth/${endpoint}/login`;
+    window.location.href = `${API_BASE_URL}/api/v1/auth/${endpoint}/login`;
   };
 
   return (

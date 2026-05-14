@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -30,7 +31,7 @@ export default function Settings() {
    const fetchUser = async () => {
       try {
          const token = localStorage.getItem('token');
-         const res = await fetch('http://localhost:8000/api/v1/auth/me', {
+         const res = await fetch('${API_BASE_URL}/api/v1/auth/me', {
             headers: { 'Authorization': `Bearer ${token}` }
          });
          const data = await res.json();

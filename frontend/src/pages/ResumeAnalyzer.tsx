@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -48,7 +49,7 @@ export default function ResumeAnalyzer() {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('http://localhost:8000/api/v1/ai/resume/analyze', {
+      const response = await fetch('${API_BASE_URL}/api/v1/ai/resume/analyze', {
         method: 'POST',
         body: formData
       });

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -47,7 +48,7 @@ export default function Documents() {
   const fetchDocuments = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8000/api/v1/ai/documents', {
+      const response = await fetch('${API_BASE_URL}/api/v1/ai/documents', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -81,7 +82,7 @@ export default function Documents() {
       formData.append('collection_id', 'general');
 
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8000/api/v1/ai/documents/upload', {
+      const response = await fetch('${API_BASE_URL}/api/v1/ai/documents/upload', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData
