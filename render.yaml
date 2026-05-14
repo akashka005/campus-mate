@@ -21,10 +21,11 @@ services:
       mountPath: /opt/render/project/src/backend/data
       sizeGB: 1
 
-  - type: static
+  - type: web
     name: campus-mate-frontend
+    runtime: static
     buildCommand: npm install && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     rootDir: frontend
     envVars:
       - key: VITE_API_URL
