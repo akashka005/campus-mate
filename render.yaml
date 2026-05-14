@@ -16,10 +16,6 @@ services:
         value: ./uploads
       - key: CHROMA_DB_DIR
         value: ./db/chroma
-    disk:
-      name: campus-mate-data
-      mountPath: /opt/render/project/src/backend/data
-      sizeGB: 1
 
   - type: web
     name: campus-mate-frontend
