@@ -96,7 +96,6 @@ GOOGLE_CLIENT_ID=optional_for_oauth
 CampusMate is built for students, by the future of AI. Whether you're debugging a complex algorithm or drafting a thesis, CampusMate is your co-pilot.
 
 *   **GitHub:** [akashka005/campus-mate](https://github.com/akashka005/campus-mate)
-*   **License:** MIT — Built to be shared, improved, and evolved.
 
 ---
 
