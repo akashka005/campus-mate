@@ -68,7 +68,7 @@ class RAGService:
                 return None
         return self._embeddings
 
-    def query(self, question: str, collection_id: str, history: list = None):
+    def query_document(self, question: str, collection_id: str, history: list = None):
         if not self.embeddings:
             return "AI Error: Document processing engine is currently offline. Please try again in a moment."
             
@@ -94,7 +94,7 @@ class RAGService:
             print(f"RAG Query Error: {e}")
             return f"Error during retrieval: {str(e)}"
 
-    def add_documents(self, file_path: str, collection_id: str):
+    def add_document(self, file_path: str, collection_id: str):
         if not self.embeddings:
             print("RAG Error: Cannot add documents because embeddings are not initialized.")
             return False
