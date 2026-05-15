@@ -5,7 +5,7 @@ from datetime import timedelta
 
 from app.db.session import get_db
 from app.models.user import User
-from app.schemas.user import UserCreate, Token, User as UserSchema
+from app.schemas.user import UserCreate, Token, User as UserSchema, UserUpdate
 from app.core.security import get_password_hash, verify_password, create_access_token
 from app.core.config import settings
 
@@ -54,6 +54,28 @@ def login(db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = 
 
 @router.get("/me", response_model=UserSchema)
 def read_user_me(current_user: User = Depends(get_current_user)):
+    return current_user
+
+@router.put("/me", response_model=UserSchema)
+def update_user_me(
+    user_in: UserUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    if user_in.full_name is not None:
+        current_user.full_name = user_in.full_name
+    if user_in.university is not None:
+        current_user.university = user_in.university
+    if user_in.major is not None:
+        current_user.major = user_in.major
+    if user_in.gpa is not None:
+        current_user.gpa = user_in.gpa
+    if user_in.password is not None:
+        current_user.hashed_password = get_password_hash(user_in.password)
+    
+    db.add(current_user)
+    db.commit()
+    db.refresh(current_user)
     return current_user
 
 from fastapi.responses import RedirectResponse

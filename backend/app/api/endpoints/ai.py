@@ -101,7 +101,12 @@ async def upload_document(
         file_path = os.path.join(settings.UPLOAD_DIR, file.filename)
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
-        rag_service.add_document(file_path, secure_collection_id)
+        indexed = rag_service.add_document(file_path, secure_collection_id)
+        if not indexed:
+            raise HTTPException(
+                status_code=500, 
+                detail="Document uploaded but AI indexing failed. This usually happens if the server is low on memory or the model download timed out."
+            )
         
         file_size = os.path.getsize(file_path)
         size_str = f"{file_size / 1024 / 1024:.1f}MB"
