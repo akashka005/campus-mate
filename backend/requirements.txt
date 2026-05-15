@@ -16,9 +16,6 @@ PyMuPDF
 sentence-transformers
 python-jose[cryptography]
 passlib[bcrypt]
-pandas
-numpy
-tf-keras
 langchain-huggingface
 psycopg2-binary
 email-validator
